@@ -9,6 +9,7 @@ Docker+Postgres
 
 
 ###########Springboot backend###############################
+
 1)cd clientside
 2)run "./mvnw.cmd spring-boot:run "-Dspring-boot.run.jvmArguments=-Duser.timezone=UTC"  // For Windows
 3)run the server on localhost:8080
