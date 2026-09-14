@@ -1,18 +1,10 @@
 package com.foodit.clientside.controller;
 
-
-import org.springframework.web.bind.annotation.RestController;
-
+import com.foodit.clientside.dto.UserRegisterRequest;
+import com.foodit.clientside.dto.UserResponse;
 import com.foodit.clientside.service.UserService;
-import com.foodit.clientside.entity.User;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import java.util.*;
-
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
@@ -20,22 +12,14 @@ public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService){
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
-
-    @PostMapping
-    public User createUser(@RequestBody User user) {
-        //TODO: process POST request
-        
-        return userService.createUser(user);
+    @PostMapping("/register")
+    public UserResponse registerUser(
+            @Valid @RequestBody UserRegisterRequest request
+    ) {
+        return userService.registerUser(request);
     }
-    @GetMapping
-    public List<User> findAllUser() {
-        return userService.findAllUser();
-    }
-    
-    
-    
 }
