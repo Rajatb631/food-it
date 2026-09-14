@@ -6,22 +6,31 @@ import jakarta.persistence.*;
 @Table(name = "users")
 public class User {
 
-    @Id
+     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
+    @Column(nullable = false)
     private String name;
 
-    @Column(unique = true ,nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false, unique = true)
+    private String phone;
+
+    @Column(nullable = false, length = 100)
+    private String password;
 
     public User(){
 
     }
 
-    public User( String name, String email){
+    public User( String name, String email, String phone, String password){
         this.name=name;
         this.email=email;
+        this.phone=phone;
+        this.password = password;
     }
 
     public long getId(){
@@ -42,4 +51,22 @@ public class User {
      public void setEmail(String email){
         this.email=email;
     }
+
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 }
